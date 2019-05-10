@@ -1,50 +1,46 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
+
+import IssueForm from './IssueForm';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <IssueForm/>
-      </header>
-    </div>
-  );
-}
+  const [show, setShow] = useState(false);
 
-const IssueForm = props => {
-  const [submitter, setSubmitter] = useState("")
-  const [issue, setIssue] = useState("")
-  const [otherinfo, setOtherinfo] = useState("")
+  const handleClose = () => {
+    setShow(false);
+  }
 
-  const handleSubmit = event => {
-    alert(submitter + issue + otherinfo)
-    event.preventDefault()
+  const handleShow = () => {
+    setShow(true);
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="formBasicEmail">
-        <Form.Label>Submitter</Form.Label>
-        <Form.Control type="text" placeholder="Your name" onChange={e => setSubmitter(e.target.value)}/>
-      </Form.Group>
-
-      <Form.Group controlId="formBasicPassword">
-        <Form.Label>Issue</Form.Label>
-        <Form.Control type="textarea" placeholder="Issue" onChange={e => setIssue(e.target.value)}/>
-      </Form.Group>
-
-      <Form.Group controlId="formBasicPassword">
-        <Form.Label>Other information</Form.Label>
-        <Form.Control type="textarea" placeholder="Other information" onChange={e => setOtherinfo(e.target.value)}/>
-      </Form.Group>
-
-      <Button variant="primary" type="submit">
-        Submit
+    <div className="App">
+      <Button variant="primary" onClick={handleShow}>
+        New issue
       </Button>
-    </Form>
-  )
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add a new issue</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <IssueForm/>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close without saving
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+  );
 }
 
 export default App;
