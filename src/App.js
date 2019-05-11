@@ -34,9 +34,6 @@ function App() {
           <Button variant="secondary" onClick={handleClose}>
             Close without saving
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
         </Modal.Footer>
       </Modal>
     </div>
