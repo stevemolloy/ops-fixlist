@@ -18,52 +18,62 @@ function App() {
         console.log(resp.data);
         setIssueList(resp.data);
       })
-    console.log('useEffect');
   }, [])
 
   return (
     <div className="App">
-      <Table striped border hover>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Submitter</th>
-            <th>Description</th>
-            <th> </th>
-          </tr>
-        </thead>
-        <tbody>
-          {issueList.map(issue => {
-            return (
-              <tr>
-                <td>#</td>
-                <td>{issue.submitter}</td>
-                <td>{issue.description}</td>
-                <td>{issue.other_info}</td>
-              </tr>
-            )})
-          }
-        </tbody>
-      </Table>
+      <InfoTable issueList={issueList}/>
       <Button variant="primary" onClick={() => setShow(true)}>
         New issue
       </Button>
-
-      <Modal show={show} onHide={() => setShow(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add a new issue</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <IssueForm/>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShow(false)}>
-            Close without saving
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <NewIssueModal show={show} setShow={setShow}/>
     </div>
   );
+}
+
+const NewIssueModal = props => {
+  return (
+    <Modal show={props.show} onHide={() => props.setShow(false)}>
+      <Modal.Header closeButton>
+        <Modal.Title>Add a new issue</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <IssueForm/>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={() => props.setShow(false)}>
+          Close without saving
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  )
+}
+
+const InfoTable = props => {
+  return (
+    <Table striped border="true" hover>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Submitter</th>
+          <th>Description</th>
+          <th>Other information</th>
+        </tr>
+      </thead>
+      <tbody>
+        {props.issueList.map((issue, index) => {
+          return (
+            <tr key={issue.id}>
+              <td>{index+1}</td>
+              <td>{issue.submitter}</td>
+              <td>{issue.description}</td>
+              <td>{issue.other_info}</td>
+            </tr>
+          )})
+        }
+      </tbody>
+    </Table>
+  )
 }
 
 export default App;
