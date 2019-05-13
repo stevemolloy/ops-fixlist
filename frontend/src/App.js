@@ -27,7 +27,7 @@ function App() {
           <Header/>
         </Row>
         <Row>
-          <Body issueList={issueList} show={show} setShow={setShow} />
+          <Body setIssueList={setIssueList} issueList={issueList} show={show} setShow={setShow} />
         </Row>
       </Container>
     </div>

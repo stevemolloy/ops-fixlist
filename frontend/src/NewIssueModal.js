@@ -11,7 +11,7 @@ const NewIssueModal = props => {
         <Modal.Title>Add a new issue</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <IssueForm setShow={props.setShow}/>
+        <IssueForm setIssueList={props.setIssueList} setShow={props.setShow}/>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={() => props.setShow(false)}>

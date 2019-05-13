@@ -10,7 +10,7 @@ const Body = props => {
         New issue
       </Button>
       <InfoTable issueList={props.issueList}/>
-      <NewIssueModal show={props.show} setShow={props.setShow}/>
+      <NewIssueModal issueList={props.issueList} setIssueList={props.setIssueList} show={props.show} setShow={props.setShow}/>
     </div>
   )
 }

@@ -10,19 +10,20 @@ const IssueForm = props => {
 
   const handleSubmit = event => {
     props.setShow(false);
-    axios
-      .post("http://localhost:9000/issues", {
+    axios.post("http://localhost:9000/issues", {
         submitter: submitter,
         description: issue,
         other_info: otherinfo
       })
       .then(resp => {
-        console.log(resp);
+        axios.get("http://localhost:9000/issues")
+          .then(resp => {
+            props.setIssueList(resp.data);
+          })
       })
       .catch(err => {
         console.log(err);
       })
-    alert(submitter + issue + otherinfo)
     event.preventDefault()
   }
 
