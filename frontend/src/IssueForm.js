@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import axios from "axios";
 
 const IssueForm = props => {
   const [submitter, setSubmitter] = useState("")
@@ -8,6 +9,19 @@ const IssueForm = props => {
   const [otherinfo, setOtherinfo] = useState("")
 
   const handleSubmit = event => {
+    props.setShow(false);
+    axios
+      .post("http://localhost:9000/issues", {
+        submitter: submitter,
+        description: issue,
+        other_info: otherinfo
+      })
+      .then(resp => {
+        console.log(resp);
+      })
+      .catch(err => {
+        console.log(err);
+      })
     alert(submitter + issue + otherinfo)
     event.preventDefault()
   }
