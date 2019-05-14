@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import axios from "axios";
 
 import InfoTable from "./InfoTable";
 import NewIssueModal from "./NewIssueModal";
 import './App.css';
 
-function App() {
+const NotFound = () => <div>Not found</div>
+
+const App = () => {
   const [show, setShow] = useState(false);
   const [issueList, setIssueList] = useState([]);
 
