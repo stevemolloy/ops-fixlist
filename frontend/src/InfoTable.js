@@ -7,6 +7,7 @@ const InfoTable = props => {
       <thead>
         <tr>
           <th>#</th>
+          <th>#</th>
           <th>Submitter</th>
           <th>Description</th>
           <th>Other information</th>
@@ -17,6 +18,7 @@ const InfoTable = props => {
           return (
             <tr key={issue.id}>
               <td>{index+1}</td>
+              <td className="led-box"><div className="led-yellow"></div></td>
               <td>{issue.submitter}</td>
               <td>{issue.description}</td>
               <td>{issue.other_info}</td>

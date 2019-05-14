@@ -5,3 +5,36 @@
 .App button {
   margin: 10px;
 }
+
+.led-red {
+  margin: 0 auto;
+  width: 24px;
+  height: 24px;
+  background-color: #F00;
+  border-radius: 50%;
+}
+
+.led-yellow {
+  margin: 0 auto;
+  width: 24px;
+  height: 24px;
+  background-color: #FC0;
+  border-radius: 50%;
+}
+
+.led-green {
+  margin: 0 auto;
+  width: 24px;
+  height: 24px;
+  background-color: #7F0;
+  border-radius: 50%;
+}
+
+.led-box {
+  height: 30px;
+  width: 20%;
+  margin: 10px 0;
+  float: left;
+  border: none;
+}
+
