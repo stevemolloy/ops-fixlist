@@ -3,11 +3,11 @@ import Table from 'react-bootstrap/Table';
 
 const InfoTable = props => {
   return (
-    <Table striped border="true" hover>
+    <Table striped border="true" hover variant="dark" size="sm" >
       <thead>
         <tr>
           <th>#</th>
-          <th>#</th>
+          <th></th>
           <th>Submitter</th>
           <th>Description</th>
           <th>Other information</th>
@@ -16,7 +16,7 @@ const InfoTable = props => {
       <tbody>
         {props.issueList.map((issue, index) => {
           return (
-            <tr key={issue.id}>
+            <tr key={issue.id} onClick={issueLink('/'+issue.id)}>
               <td>{index+1}</td>
               <td className="led-box">
                 <div className={"led-" + trafficLightColor(issue.createdAt)}></div>
@@ -30,6 +30,10 @@ const InfoTable = props => {
       </tbody>
     </Table>
   )
+}
+
+const issueLink = (loc) => {
+  return () => window.location.href=loc;
 }
 
 const _MS_PER_DAY = 1000 * 60 * 60 * 24;
