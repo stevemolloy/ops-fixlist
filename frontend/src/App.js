@@ -30,7 +30,6 @@ const App = () => {
     axios
       .get("http://localhost:9000/issues")
       .then(resp => {
-        console.log(resp.data);
         setIssueList(resp.data);
       })
   }, [])
@@ -47,7 +46,8 @@ const App = () => {
           <Row>
             <Switch>
               <Route exact path="/" component={FrontPage} />
-              <Route exact path="/:issueid" component={IssuePage} />
+              <Route exact path="/view/:issueid" component={IssuePage} />
+              <Route exact path="/edit/:issueid" component={IssuePage} />
             </Switch>
           </Row>
         </Container>

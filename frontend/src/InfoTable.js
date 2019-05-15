@@ -16,7 +16,7 @@ const InfoTable = props => {
       <tbody>
         {props.issueList.map((issue, index) => {
           return (
-            <tr key={issue.id} onClick={issueLink('/'+issue.id)}>
+            <tr key={issue.id} onClick={issueLink('/view/'+issue.id)}>
               <td>{index+1}</td>
               <td className="led-box">
                 <div className={"led-" + trafficLightColor(issue.createdAt)}></div>
