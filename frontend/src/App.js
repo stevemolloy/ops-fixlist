@@ -13,7 +13,7 @@ const App = () => {
   const [show, setShow] = useState(false);
   const [issueList, setIssueList] = useState([]);
 
-  const Content = () => {
+  const FrontPage = () => {
     return (
       <div className="AppBody">
         <Button variant="primary" onClick={() => setShow(true)}>
@@ -46,7 +46,7 @@ const App = () => {
           </Row>
           <Row>
             <Switch>
-              <Route exact path="/" component={Content} />
+              <Route exact path="/" component={FrontPage} />
               <Route component={NotFound} />
             </Switch>
           </Row>
