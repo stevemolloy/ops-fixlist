@@ -52,9 +52,9 @@ const trafficLightColor = (a) => {
   const b_Date = new Date(); // Now
   const diff = dateDiffInDays(a_Date, b_Date);
 
-  if (diff < 1) {
+  if (diff < 7) {
     return 'green';
-  } else if (diff < 2) {
+  } else if (diff < 14) {
     return 'yellow';
   } else {
     return 'red';
