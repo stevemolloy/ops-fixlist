@@ -7,6 +7,7 @@ import axios from "axios";
 
 import InfoTable from "./InfoTable";
 import NewIssueModal from "./NewIssueModal";
+import IssuePage from './IssuePage';
 import './App.css';
 
 const App = () => {
@@ -24,7 +25,7 @@ const App = () => {
     );
   };
 
-  const NotFound = () => <div>Issue not found</div>;
+  const NotFound = () => <div>Not found</div>;
 
   useEffect(() => {
     axios
@@ -47,6 +48,7 @@ const App = () => {
           <Row>
             <Switch>
               <Route exact path="/" component={FrontPage} />
+              <Route exact path="/:issueid" component={IssuePage} />
               <Route component={NotFound} />
             </Switch>
           </Row>
