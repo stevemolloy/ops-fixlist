@@ -8,7 +8,7 @@ import axios from "axios";
 import InfoTable from "./InfoTable";
 import NewIssueModal from "./NewIssueModal";
 import IssuePage from './IssuePage';
-import NotFound from './NotFound';
+import EditIssue from './EditIssue';
 import './App.css';
 
 const App = () => {
@@ -47,7 +47,7 @@ const App = () => {
             <Switch>
               <Route exact path="/" component={FrontPage} />
               <Route exact path="/view/:issueid" component={IssuePage} />
-              <Route exact path="/edit/:issueid" component={IssuePage} />
+              <Route exact path="/edit/:issueid" component={EditIssue} />
             </Switch>
           </Row>
         </Container>
