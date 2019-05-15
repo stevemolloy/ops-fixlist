@@ -42,7 +42,7 @@ const App = () => {
         <Container>
           <Row>
             <div className="AppHeader">
-              <h1>Operations Fix-List</h1>
+              <h1><Link to="/">Operations Fix-List</Link></h1>
             </div>
           </Row>
           <Row>
