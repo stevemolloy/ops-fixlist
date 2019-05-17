@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Redirect } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
@@ -8,6 +9,7 @@ import NotFound from './NotFound';
 const EditIssue = ({match}) => {
   const [issue, setIssue] = useState({});
   const [notfound, setNotfound] = useState(false);
+  const [redirect, setRedirect] = useState(false);
   const issueid = match.params.issueid;
 
   useEffect(() => {
@@ -38,8 +40,29 @@ const EditIssue = ({match}) => {
     setIssue({...issue, other_info: event.target.value});
   }
 
+  const handleSubmit = (event) => {
+    console.log(issue.submitter, issue.description, issue.other_info);
+    axios
+      .put("http://localhost:9000/issues/" + issueid, {
+        submitter: issue.submitter,
+        description: issue.description,
+        other_info: issue.other_info
+      })
+      .then(resp => {
+        setRedirect(true);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    event.preventDefault();
+  }
+
+  if (redirect) {
+    return <Redirect to={'/view/'+issueid} />;
+  }
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Submitter</Form.Label>
         <Form.Control
