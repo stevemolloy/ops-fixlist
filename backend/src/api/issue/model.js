@@ -9,6 +9,9 @@ const issueSchema = new Schema({
   },
   other_info: {
     type: String
+  },
+  resolved: {
+    type: Boolean
   }
 }, {
   timestamps: true,
@@ -26,6 +29,7 @@ issueSchema.methods = {
       submitter: this.submitter,
       description: this.description,
       other_info: this.other_info,
+      resolved: this.resolved,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

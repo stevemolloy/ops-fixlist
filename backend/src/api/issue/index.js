@@ -6,7 +6,7 @@ import { schema } from './model'
 export Issue, { schema } from './model'
 
 const router = new Router()
-const { submitter, description, other_info } = schema.tree
+const { submitter, description, other_info, resolved } = schema.tree
 
 /**
  * @api {post} /issues Create issue
@@ -15,12 +15,13 @@ const { submitter, description, other_info } = schema.tree
  * @apiParam submitter Issue's submitter.
  * @apiParam description Issue's description.
  * @apiParam other_info Issue's other_info.
+ * @apiParam resolved Issue's resolved.
  * @apiSuccess {Object} issue Issue's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Issue not found.
  */
 router.post('/',
-  body({ submitter, description, other_info }),
+  body({ submitter, description, other_info, resolved }),
   create)
 
 /**
@@ -53,12 +54,13 @@ router.get('/:id',
  * @apiParam submitter Issue's submitter.
  * @apiParam description Issue's description.
  * @apiParam other_info Issue's other_info.
+ * @apiParam resolved Issue's resolved.
  * @apiSuccess {Object} issue Issue's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Issue not found.
  */
 router.put('/:id',
-  body({ submitter, description, other_info }),
+  body({ submitter, description, other_info, resolved }),
   update)
 
 export default router
