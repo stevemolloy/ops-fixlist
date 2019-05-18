@@ -21,7 +21,10 @@ const App = () => {
         <Button variant="primary" onClick={() => setShow(true)}>
           New issue
         </Button>
-        <InfoTable issueList={issueList}/>
+        <h2>Outstanding Issues</h2>
+        <InfoTable issueList={issueList.filter(issue => !issue.resolved)}/>
+        <h2>Resolved Issues</h2>
+        <InfoTable issueList={issueList.filter(issue => issue.resolved)}/>
       </div>
     );
   };
