@@ -40,7 +40,7 @@ const IssuePage = ({match}) => {
 
   return (
     <>
-      <Button variant="warning" href={"/edit/" + issueid}>Edit this issue</Button>
+      <Button variant="warning" onClick={() => window.location.replace("/edit/"+issueid)}>Edit issue</Button>
       <Button variant="danger" onClick={mark_resolved}>Mark as resolved</Button>
       <Table variant="dark" borderless striped hover>
         <tbody>
