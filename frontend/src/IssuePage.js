@@ -10,8 +10,8 @@ const IssuePage = ({match}) => {
   const [notfound, setNotfound] = useState(false);
   const issueid = match.params.issueid;
 
-  const mark_resolved = () => {
-    const newIssue = {...issue, resolved: true};
+  const toggle_resolved = () => {
+    const newIssue = {...issue, resolved: !issue.resolved};
     setIssue(newIssue);
     axios
       .put("http://localhost:9000/issues/" + issueid, newIssue)
@@ -38,10 +38,14 @@ const IssuePage = ({match}) => {
 
   const createdDateTime = new Date(issue.createdAt);
 
+  const resolvedButtonText = issue.resolved ?
+    'Mark as NOT resolved' :
+    'Mark as resolved';;
+
   return (
     <>
       <Button variant="warning" onClick={() => window.location.replace("/edit/"+issueid)}>Edit issue</Button>
-      <Button variant="danger" onClick={mark_resolved}>Mark as resolved</Button>
+      <Button variant="danger" onClick={toggle_resolved}>{resolvedButtonText}</Button>
       <Table variant="dark" borderless striped hover>
         <tbody>
           <tr>
