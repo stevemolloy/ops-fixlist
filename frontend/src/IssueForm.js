@@ -13,7 +13,8 @@ const IssueForm = props => {
     axios.post("http://localhost:9000/issues", {
         submitter: submitter,
         description: issue,
-        other_info: otherinfo
+        other_info: otherinfo,
+        resolved: false
       })
       .then(resp => {
         axios.get("http://localhost:9000/issues")

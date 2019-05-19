@@ -11,32 +11,34 @@ import IssuePage from './IssuePage';
 import EditIssue from './EditIssue';
 import './App.css';
 
-const App = () => {
+const FrontPage = () => {
   const [show, setShow] = useState(false);
   const [issueList, setIssueList] = useState([]);
-
-  const FrontPage = () => {
-    return (
-      <div className="AppBody">
-        <Button variant="primary" onClick={() => setShow(true)}>
-          New issue
-        </Button>
-        <h2>Outstanding Issues</h2>
-        <InfoTable issueList={issueList.filter(issue => !issue.resolved)}/>
-        <h2>Resolved Issues</h2>
-        <InfoTable issueList={issueList.filter(issue => issue.resolved)}/>
-      </div>
-    );
-  };
 
   useEffect(() => {
     axios
       .get("http://localhost:9000/issues")
       .then(resp => {
+        console.log(resp);
         setIssueList(resp.data);
       })
-  }, [])
+  }, []);
 
+  return (
+    <div className="AppBody">
+      <Button variant="primary" onClick={() => setShow(true)}>
+        New issue
+      </Button>
+      <h2>Outstanding Issues</h2>
+      <InfoTable issueList={issueList.filter(issue => !issue.resolved)}/>
+      <h2>Resolved Issues</h2>
+      <InfoTable issueList={issueList.filter(issue => issue.resolved)}/>
+      <NewIssueModal setIssueList={setIssueList} show={show} setShow={setShow}/>
+    </div>
+  );
+};
+
+const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
@@ -54,7 +56,6 @@ const App = () => {
             </Switch>
           </Row>
         </Container>
-        <NewIssueModal setIssueList={setIssueList} show={show} setShow={setShow}/>
       </BrowserRouter>
     </div>
   );

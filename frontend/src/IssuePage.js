@@ -10,6 +10,16 @@ const IssuePage = ({match}) => {
   const [notfound, setNotfound] = useState(false);
   const issueid = match.params.issueid;
 
+  const mark_resolved = () => {
+    const newIssue = {...issue, resolved: true};
+    setIssue(newIssue);
+    axios
+      .put("http://localhost:9000/issues/" + issueid, newIssue)
+      .then((resp) => {
+        console.log(resp);
+      })
+  }
+
   useEffect(() => {
     axios
       .get("http://localhost:9000/issues/" + issueid)
@@ -31,6 +41,7 @@ const IssuePage = ({match}) => {
   return (
     <>
       <Button variant="warning" href={"/edit/" + issueid}>Edit this issue</Button>
+      <Button variant="danger" onClick={mark_resolved}>Mark as resolved</Button>
       <Table variant="dark" borderless striped hover>
         <tbody>
           <tr>
@@ -48,6 +59,10 @@ const IssuePage = ({match}) => {
           <tr>
             <td><strong>Other information</strong></td>
             <td>{issue.other_info}</td>
+          </tr>
+          <tr>
+            <td><strong>Resolved?</strong></td>
+            <td>{issue.resolved ? 'Yes' : 'No'}</td>
           </tr>
         </tbody>
       </Table>
