@@ -41,7 +41,6 @@ const EditIssue = ({match}) => {
   }
 
   const handleSubmit = (event) => {
-    console.log(issue.submitter, issue.description, issue.other_info);
     axios
       .put("http://localhost:9000/issues/" + issueid, {
         submitter: issue.submitter,
