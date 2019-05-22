@@ -11,4 +11,6 @@ COPY src src
 RUN npx react-scripts build
 
 FROM nginx:1.15-alpine
+
+COPY assets/nginx.conf /etc/nginx/
 COPY --from=builder /build/build /usr/share/nginx/html
