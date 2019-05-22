@@ -14,7 +14,7 @@ const EditIssue = ({match}) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:9000/issues/" + issueid)
+      .get("/issues/" + issueid)
       .then(resp => {
         setIssue(resp.data);
       })
@@ -42,7 +42,7 @@ const EditIssue = ({match}) => {
 
   const handleSubmit = (event) => {
     axios
-      .put("http://localhost:9000/issues/" + issueid, {
+      .put("/issues/" + issueid, {
         submitter: issue.submitter,
         description: issue.description,
         other_info: issue.other_info

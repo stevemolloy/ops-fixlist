@@ -10,14 +10,14 @@ const IssueForm = props => {
 
   const handleSubmit = event => {
     props.setShow(false);
-    axios.post("http://localhost:9000/issues", {
+    axios.post("/issues", {
         submitter: submitter,
         description: issue,
         other_info: otherinfo,
         resolved: false
       })
       .then(resp => {
-        axios.get("http://localhost:9000/issues")
+        axios.get("/issues")
           .then(resp => {
             props.setIssueList(resp.data);
           })
