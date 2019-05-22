@@ -18,7 +18,6 @@ services:
       - MONGODB_URI=mongodb://mongodb/ops-fixlist
     ports:
       - 8080:8080
-      - 9000:9000
   frontend:
     build: ./frontend
     labels:
