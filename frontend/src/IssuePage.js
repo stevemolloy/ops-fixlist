@@ -14,7 +14,7 @@ const IssuePage = ({match}) => {
     const newIssue = {...issue, resolved: !issue.resolved};
     setIssue(newIssue);
     axios
-      .put("http://localhost:9000/issues/" + issueid, newIssue)
+      .put("/issues/" + issueid, newIssue)
       .then((resp) => {
         console.log(resp);
       })
@@ -22,7 +22,7 @@ const IssuePage = ({match}) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:9000/issues/" + issueid)
+      .get("/issues/" + issueid)
       .then(resp => {
         setIssue(resp.data);
       })

@@ -11,7 +11,7 @@ const FrontPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:9000/issues")
+      .get("/issues")
       .then(resp => {
         setIssueList(resp.data);
       })
