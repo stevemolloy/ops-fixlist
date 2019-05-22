@@ -1,0 +1,29 @@
+version: "2"
+services:
+  traefik:
+    image: traefik:1.7-alpine
+    command: --docker
+    ports:
+      - 57037:80
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  backend:
+    build: ./backend
+    depends_on:
+      - mongodb
+    labels:
+      - "traefik.frontend.rule=Host:localhost; PathPrefix: /issues"
+      - "traefik.port=8080"
+    environment:
+      - MONGODB_URI=mongodb://mongodb/ops-fixlist
+    ports:
+      - 8080:8080
+  frontend:
+    build: ./frontend
+    labels:
+      - "traefik.frontend.rule=Host:localhost"
+      - "traefik.port=80"
+  mongodb:
+    image: mongo:4
+    environment:
+      - MONGO_INITDB_DATABASE=ops-fixlist
