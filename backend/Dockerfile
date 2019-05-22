@@ -1,6 +1,5 @@
 FROM node:10-alpine
 
-ENV MASTER_KEY dummy_value
 ENV NODE_ENV production
 
 WORKDIR /app
