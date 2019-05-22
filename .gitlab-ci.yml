@@ -11,6 +11,13 @@ build_image_develop:
   only:
     - develop
 
+deploy_image_develop:
+  stage: deploy
+  script:
+    - 'curl -H "Authorization: Bearer $AWX_TOKEN" -XPOST https://ansible.maxiv.lu.se/api/v2/job_templates/97/launch/'
+  only:
+    - develop
+
 build_image:
   stage: build
   script:
@@ -18,5 +25,12 @@ build_image:
     - docker build backend -t docker.maxiv.lu.se/ops-fixlist-backend
     - docker push docker.maxiv.lu.se/ops-fixlist-frontend
     - docker push docker.maxiv.lu.se/ops-fixlist-backend
+  only:
+    - master
+
+deploy_image:
+  stage: deploy
+  script:
+    - 'curl -H "Authorization: Bearer $AWX_TOKEN" -XPOST https://ansible.maxiv.lu.se/api/v2/job_templates/98/launch/'
   only:
     - master
