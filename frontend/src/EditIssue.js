@@ -45,7 +45,8 @@ const EditIssue = ({match}) => {
       .put("/issues/" + issueid, {
         submitter: issue.submitter,
         description: issue.description,
-        other_info: issue.other_info
+        other_info: issue.other_info,
+        resolved: issue.resolved
       })
       .then(resp => {
         setRedirect(true);
